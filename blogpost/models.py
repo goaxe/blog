@@ -18,3 +18,6 @@ class Blogpost(models.Model):
     @permalink
     def get_absolute_url(self):
         return 'blog_post', None, {'slug': self.slug}
+
+
+

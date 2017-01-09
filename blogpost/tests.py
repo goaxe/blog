@@ -4,6 +4,7 @@ from django.http import HttpRequest
 from blogpost.views import index, view_post
 from models import Blogpost
 from datetime import datetime
+from django.contrib.sitemaps.views import sitemap
 
 
 # Create your tests here.
@@ -34,4 +35,10 @@ class BlogpostTest(TestCase):
                                 posted=datetime.now(), body='This is a blog')
         response = self.client.get('/')
         self.assertIn(b'This is a blog', response.content)
+
+    def test_sitemap(self):
+        found = resolve('/sitemap.xml')
+        self.assertEqual(found.func, sitemap)
+        print found
+
 
