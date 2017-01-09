@@ -20,9 +20,13 @@ from django.contrib.sitemaps.views import sitemap
 from blogpost import views
 
 from blogpost.PageSitemap import PageSitemap
+from blogpost.FlatPageSitemap import FlatPageSitemap
+from blogpost.BlogSitemap import BlogSitemap
 
 sitemaps = {
-    "page": PageSitemap
+    'page': PageSitemap,
+    'flatpages': FlatPageSitemap,
+    'blog': BlogSitemap,
 }
 
 

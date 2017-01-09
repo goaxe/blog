@@ -8,4 +8,5 @@ class FlatPageSitemap(Sitemap):
 
     def items(self):
         Site = django_apps.get_model('sites.Site')
-        
+        currentSite = Site.objects.get_current()
+        return currentSite.flatpage_set.filter(registration_required=False)
