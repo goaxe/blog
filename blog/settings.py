@@ -40,9 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'django.contrib.flatpages',
     'django_comments',
     'rest_framework',
-    'django.contrib.flatpages',
     'blogpost',
 ]
 
@@ -62,7 +62,7 @@ ROOT_URLCONF = 'blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'blogpost/templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'blogpost/static/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

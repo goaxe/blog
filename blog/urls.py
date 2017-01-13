@@ -17,17 +17,23 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
+from rest_framework import routers
+
 from blogpost import views
 
 from blogpost.PageSitemap import PageSitemap
 from blogpost.FlatPageSitemap import FlatPageSitemap
 from blogpost.BlogSitemap import BlogSitemap
+from blogpost import BlogpostSet
 
 sitemaps = {
     'page': PageSitemap,
     'flatpages': FlatPageSitemap,
     'blog': BlogSitemap,
 }
+
+apiRouter = routers.DefaultRouter()
+apiRouter.register(r'blogpost', BlogpostSet, 'blogpost-list')
 
 
 urlpatterns = [
@@ -36,5 +42,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^pages/', include('django.contrib.flatpages.urls')),
     url(r'^comments/', include('django_comments.urls')),
-    url(r'sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
+    url(r'sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api/', include(apiRouter.urls)),
 ]
